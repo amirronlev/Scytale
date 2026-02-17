@@ -1,0 +1,44 @@
+---
+description: Scytale design system - fonts, colors, and UI conventions
+alwaysApply: true
+---
+
+# Scytale Design System
+
+## UI Components
+- Use **shadcn/ui** exclusively — never build custom UI components
+- Use `cn()` from `@/lib/utils` for conditional class merging
+
+## Fonts
+- **Primary font**: `Montserrat` (`font-sans`) — use for ALL text by default
+- **Display font**: `Clash Display` (`font-display`) — NEVER use unless the user explicitly requests it. Always confirm with the user before applying.
+
+## Colors (Tailwind classes only)
+- **CTA / Primary**: `bg-primary` / `text-primary` → `#6162F5`
+- **Primary text**: `text-foreground` → `#3E3E3E`
+- **Secondary text**: `text-muted-foreground` → `#737373`
+- **Icons (default)**: `text-gray-600`
+- Use only Tailwind's built-in color palette for additional colors
+- Never use arbitrary hex values in classes — all custom colors are mapped to CSS variables
+
+## Sidebar Menu
+- Icon container: 20×20px (`w-5 h-5`), icon artwork 15×15px
+- Icon color: `text-gray-600` (normal state)
+- Text: `font-normal` (regular weight, 14px)
+- Text color: `text-sidebar-foreground`
+- Hover: text color change only — no background highlight
+- Active item: `text-primary` with `bg-accent` background
+
+## Examples
+
+```tsx
+// ❌ BAD
+<h1 className="font-display">Title</h1>
+<p className="text-[#3E3E3E]">Text</p>
+<SidebarMenuButton className="font-medium">Item</SidebarMenuButton>
+
+// ✅ GOOD
+<h1 className="text-foreground font-semibold">Title</h1>
+<p className="text-foreground">Text</p>
+<SidebarMenuButton className="font-normal text-sidebar-foreground">Item</SidebarMenuButton>
+```

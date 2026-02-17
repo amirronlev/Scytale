@@ -1,0 +1,34 @@
+---
+description: Always use shadcn/ui as the design system for all UI components
+alwaysApply: true
+---
+
+# Design System: shadcn/ui
+
+All UI in this project must be built using **shadcn/ui** components.
+
+## Rules
+
+- Always use shadcn/ui components (`Button`, `Card`, `Dialog`, `Input`, `Select`, etc.) instead of building custom components or using other UI libraries
+- Follow shadcn/ui conventions for theming, variants, and composition
+- When a needed component exists in shadcn/ui, install and use it — never recreate it manually
+- Use `cn()` utility from `@/lib/utils` for conditional class merging
+- Style with Tailwind CSS classes only — use Tailwind's built-in color palette
+- Never use arbitrary hex values in className — all custom colors are defined as CSS variables
+
+## Adding Components
+
+```bash
+npx shadcn@latest add <component-name>
+```
+
+## Example
+
+```tsx
+// ❌ BAD
+<button className="bg-[#6162F5] text-white px-4 py-2 rounded">Click me</button>
+
+// ✅ GOOD
+import { Button } from "@/components/ui/button"
+<Button variant="default">Click me</Button>
+```
